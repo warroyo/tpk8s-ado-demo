@@ -1,0 +1,31 @@
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: Package
+metadata:
+  annotations:
+    apps.tanzu.vmware.com/promotable: ""
+    apps.tanzu.vmware.com/promote-group: ContainerApp/spring-music-ado
+  creationTimestamp: null
+  name: spring-music-ado.apps.local.20240729.1845.15441
+spec:
+  refName: spring-music-ado.apps.local
+  releasedAt: "2024-07-29T18:48:02Z"
+  template:
+    spec:
+      deploy:
+      - kapp:
+          rawOptions:
+          - --wait=false
+      fetch:
+      - imgpkgBundle:
+          image: ghcr.io/warroyo/spring-music-ado@sha256:a4bd42e0b5f471fdc3053885bf41afd0c6ca65172883e7f98a16cb70693748ed
+      template:
+      - ytt:
+          paths:
+          - config/
+      - kbld:
+          paths:
+          - .imgpkg/images.yml
+          - '-'
+  valuesSchema:
+    openAPIv3: null
+  version: 20240729.1845.15441
