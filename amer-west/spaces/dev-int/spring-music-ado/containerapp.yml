@@ -10,12 +10,12 @@ spec:
   contact:
     team: warroyo
   content:
-    buildTimestamp: "2024-07-29T18:45:15Z"
-    gitCommit: 395c23ccb0f623f349d00fdf9bfa0b65c9ba6c0c-dirty
+    buildTimestamp: "2024-07-30T14:48:14Z"
+    gitCommit: fd788e2d625bbd0b4c40a69cc0149d1fc4100d9c-dirty
     gitURL: github.com/warroyo/spring-music.git
     packageRefName: spring-music-ado.apps.local
-    summary: git:395c23c @ 2024-07-29T18:45:15Z
-    version: 20240729.1845.15441
+    summary: git:fd788e2 @ 2024-07-30T14:48:14Z
+    version: 20240730.1448.14323
   image: ghcr.io/warroyo/spring-music-ado@sha256:95fcc45cbd21773901a385bef062bb236b521a6cd9ab27b4257eda2dc01d0068
   nonSecretEnv:
   - name: JAVA_TOOL_OPTIONS
@@ -73,7 +73,7 @@ spec:
   - apiGroup: data.packaging.carvel.dev
     for: kubernetes.delete
     kind: Package
-    name: spring-music-ado.apps.local.20240729.1845.15441
+    name: spring-music-ado.apps.local.20240730.1448.14323
   - for: kubernetes.delete
     kind: Secret
     name: spring-music-ado-values
