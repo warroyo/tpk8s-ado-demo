@@ -1,0 +1,94 @@
+apiVersion: apps.tanzu.vmware.com/v1
+kind: ContainerApp
+metadata:
+  annotations:
+    apps.tanzu.vmware.com/promotable: ""
+    apps.tanzu.vmware.com/promote-group: ContainerApp/spring-music-ado
+    containerapp.apps.tanzu.vmware.com/class: kubernetes
+  name: spring-music-ado
+spec:
+  contact:
+    team: warroyo
+  content:
+    buildTimestamp: "2024-08-06T18:54:13Z"
+    gitCommit: 54e20c06d20a34f6ac1b91e908169de9ce178a3b-dirty
+    gitURL: github.com/warroyo/spring-music.git
+    packageImage: ghcr.io/warroyo/spring-music-ado@sha256:6164ac867ee80c95b5fe6904fa4db2ce9e2d7457fe709c40c86435ff96ba00c6
+    packageRefName: spring-music-ado.apps.local
+    packageVersion: 20240806.1854.13444
+    summary: git:54e20c0 @ 2024-08-06T18:54:13Z
+    version: 20240806.1854.13444
+  health:
+    maxUnavailableReplicas: 10%
+  image: ghcr.io/warroyo/spring-music-ado@sha256:09a794a99c43ad9eacfbcf600d9b51058dd524275f7d41e96794f25f0118a726
+  nonSecretEnv:
+  - name: JAVA_TOOL_OPTIONS
+    value: -Dmanagement.endpoint.health.probes.add-additional-paths=true -Dmanagement.health.probes.enabled=true
+      -Dserver.port=8080 -Dserver.shutdown.grace-period=24s
+  ports:
+  - name: main
+    port: 8080
+  probes:
+    liveness:
+      httpGet:
+        path: /livez
+        port: 8080
+        scheme: HTTP
+    readiness:
+      httpGet:
+        path: /readyz
+        port: 8080
+        scheme: HTTP
+    startup:
+      failureThreshold: 120
+      httpGet:
+        path: /readyz
+        port: 8080
+        scheme: HTTP
+      initialDelaySeconds: 1
+      periodSeconds: 1
+  relatedRefs:
+  - for: kubernetes.list-replicas
+    kind: Pod
+    labelSelector: containerapp.apps.tanzu.vmware.com/app-name=spring-music-ado
+  - apiGroup: apps
+    for: kubernetes.service-binding-target
+    kind: Deployment
+    name: spring-music-ado
+  - for: kubernetes.service-target
+    kind: Service
+    name: spring-music-ado
+  - for: kubernetes.scale-replicas
+    keyPath: .data['values.yml']->[yaml].replicas
+    kind: Secret
+    name: spring-music-ado-values
+  - for: kubernetes.scale-resources
+    keyPath: .data['values.yml']->[yaml].resources
+    kind: Secret
+    name: spring-music-ado-values
+  - for: kubernetes.set-secret-env
+    keyPath: .data['values.yml']->[yaml].secretEnv
+    kind: Secret
+    name: spring-music-ado-values
+  - apiGroup: packaging.carvel.dev
+    for: kubernetes.delete
+    kind: PackageInstall
+    name: spring-music-ado
+  - apiGroup: data.packaging.carvel.dev
+    for: kubernetes.delete
+    kind: Package
+    name: spring-music-ado.apps.local.20240806.1854.13444
+  - for: kubernetes.delete
+    kind: Secret
+    name: spring-music-ado-values
+  - for: kubernetes.set-content-hash
+    keyPath: .data['values.yml']->[yaml].contentHash
+    kind: Secret
+    name: spring-music-ado-values
+  - for: kubernetes.set-content-version
+    keyPath: .data['values.yml']->[yaml].contentVersion
+    kind: Secret
+    name: spring-music-ado-values
+  resources:
+    cpu: 300m
+    memory: 1Gi
