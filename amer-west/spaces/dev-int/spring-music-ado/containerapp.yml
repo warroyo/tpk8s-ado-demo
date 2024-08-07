@@ -10,17 +10,17 @@ spec:
   contact:
     team: warroyo
   content:
-    buildTimestamp: "2024-08-06T18:54:13Z"
-    gitCommit: 54e20c06d20a34f6ac1b91e908169de9ce178a3b-dirty
+    buildTimestamp: "2024-08-07T14:54:14Z"
+    gitCommit: 0f2502daf6bd53af6c500505652bdc820058cb0d-dirty
     gitURL: github.com/warroyo/spring-music.git
-    packageImage: ghcr.io/warroyo/spring-music-ado@sha256:6164ac867ee80c95b5fe6904fa4db2ce9e2d7457fe709c40c86435ff96ba00c6
+    packageImage: ghcr.io/warroyo/spring-music-ado@sha256:1f4cb0aa7d5b69a64ce49df8dc73f5df7e74c01f012f857a053c441051a73783
     packageRefName: spring-music-ado.apps.local
-    packageVersion: 20240806.1854.13444
-    summary: git:54e20c0 @ 2024-08-06T18:54:13Z
-    version: 20240806.1854.13444
+    packageVersion: 20240807.1454.14188
+    summary: git:0f2502d @ 2024-08-07T14:54:14Z
+    version: 20240807.1454.14188
   health:
     maxUnavailableReplicas: 10%
-  image: ghcr.io/warroyo/spring-music-ado@sha256:09a794a99c43ad9eacfbcf600d9b51058dd524275f7d41e96794f25f0118a726
+  image: ghcr.io/warroyo/spring-music-ado@sha256:42f0c646c7669e12c5982796fbecf1c1ee5ab0f10548c4b2c48623e0e5c4bb16
   nonSecretEnv:
   - name: JAVA_TOOL_OPTIONS
     value: -Dmanagement.endpoint.health.probes.add-additional-paths=true -Dmanagement.health.probes.enabled=true
@@ -77,7 +77,7 @@ spec:
   - apiGroup: data.packaging.carvel.dev
     for: kubernetes.delete
     kind: Package
-    name: spring-music-ado.apps.local.20240806.1854.13444
+    name: spring-music-ado.apps.local.20240807.1454.14188
   - for: kubernetes.delete
     kind: Secret
     name: spring-music-ado-values
