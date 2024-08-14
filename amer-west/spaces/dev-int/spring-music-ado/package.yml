@@ -5,10 +5,10 @@ metadata:
     apps.tanzu.vmware.com/promotable: ""
     apps.tanzu.vmware.com/promote-group: ContainerApp/spring-music-ado
   creationTimestamp: null
-  name: spring-music-ado.apps.local.20240806.1854.13444
+  name: spring-music-ado.apps.local.20240814.1437.29610
 spec:
   refName: spring-music-ado.apps.local
-  releasedAt: "2024-08-06T18:56:27Z"
+  releasedAt: "2024-08-14T14:39:35Z"
   template:
     spec:
       deploy:
@@ -17,7 +17,7 @@ spec:
           - --wait=false
       fetch:
       - imgpkgBundle:
-          image: ghcr.io/warroyo/spring-music-ado@sha256:6164ac867ee80c95b5fe6904fa4db2ce9e2d7457fe709c40c86435ff96ba00c6
+          image: ghcr.io/warroyo/spring-music-ado@sha256:7c616ecdd5a1a8e88fa0f61461074b9f5da30e27cf3ac41fcf61da25fdbd9198
       template:
       - ytt:
           paths:
@@ -28,4 +28,4 @@ spec:
           - '-'
   valuesSchema:
     openAPIv3: null
-  version: 20240806.1854.13444
+  version: 20240814.1437.29610
